@@ -1,0 +1,29 @@
+.pair {
+    background: rgb(161, 161, 161);
+    padding: 20px;
+}
+
+.impair {
+    background: rgb(128, 128, 128);
+    padding: 20px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+em {
+    color: #620c0c;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.img-fluid {
+    width: 512px;
+    height: 512px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #fff;
+}

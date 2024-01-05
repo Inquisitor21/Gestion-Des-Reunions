@@ -1,0 +1,74 @@
+<app-aide
+    [selectedLanguage]="selectedLanguage"
+    [aideTitre]="'creer_reunion_Aide_Titre'"
+    [aideContentKeys]="[
+            'creer_reunion_Aide_P1',
+            'creer_reunion_Aide_P2',
+            'creer_reunion_Aide_P3',
+            'creer_reunion_Aide_P4',
+            'creer_reunion_Aide_P5',
+            'creer_reunion_Aide_P6',
+            'creer_reunion_Aide_P7',
+            ]">
+</app-aide>
+
+<section>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="contactForm">
+            <h2>{{"creer_reunion_H2" | translate}}</h2>
+            <form class="formBox" autocomplete="off">
+                <div class="inputBox width100">
+                    <input type="text" required [(ngModel)]="reunion_Valeur_Nom"
+                           name="Nom" (input)="verifier_Saisie_Nom()">
+                    <span>{{"creer_reunion_Nom" | translate}}</span>
+                    <em *ngIf="!reunion_Nom_Valide && nom_load">{{"creer_reunion_Nom_Error_Message" | translate}}</em>
+                </div>
+                <div class="inputBox width100">
+                    <input type="text" required [(ngModel)]="reunion_Valeur_Prenom"
+                           name="Prenom" (input)="verifier_Saisie_Prenom()">
+                    <span>{{"creer_reunion_Prenom" | translate}}</span>
+                    <em *ngIf="!reunion_Prenom_Valide && prenom_load">{{"creer_reunion_Prenom_Error_Message" | translate}}</em>
+                </div>
+                <div class="inputBox width100">
+                    <input type="email" required [(ngModel)]="reunion_Valeur_Courriel" placeholder=""
+                           name="Courriel" (input)="verifier_Saisie_Courriel()">
+                    <span>{{"creer_reunion_Courriel" | translate}}</span>
+                    <em *ngIf="!reunion_Courriel_Valide && courriel_load ">{{"creer_reunion_Courriel_Error_Message" | translate}}</em>
+                </div>
+                <div class="inputBox width100">
+                    <input type="text" required [(ngModel)]="reunion_Valeur_ID_Reunion"
+                           name="ID_reunion" maxlength="8" (input)="verifier_Saisie_ID()">
+                    <span>{{"creer_reunion_ID_Reunion" | translate}}</span>
+                    <em *ngIf="!reunion_ID_Reunion_Valide && id_load">{{ "creer_reunion_ID_Error_Message" | translate}}</em>
+                </div>
+
+                <mat-form-field>
+                    <mat-label>{{ 'dateDebut' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="pickerStart" (dateChange)="addEvent('start', $event)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerStart></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{ 'dateFin' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="pickerEnd" (dateChange)="addEvent('end', $event)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerEnd></mat-datepicker>
+                </mat-form-field>
+
+                <div class="inputBox width100 mt-3">
+                    <textarea required maxlength="250" [(ngModel)]="reunion_Valeur_Description" name="Description"
+                              (input)="verifier_Limite_Caracteres()"></textarea>
+                    <span>{{ "creer_reunion_Description" | translate }}</span>
+                    <div class="counter">{{ nombreCaracteres }} / {{ limiteCaracteres }}</div>
+                    <em *ngIf="!reunion_Limite_Valide && description_load">{{ reunion_Limite_Error_Message | translate }}</em>
+                </div>
+                <div class="inputBox width100">
+                    <button id="btn-creer" type="submit" class="btn btn-danger me-3" [disabled]="!reunion_Is_Form_Valid"
+                            (click)="resetFormulaireOnSubmit();">{{ reunion_button_Creer | translate }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

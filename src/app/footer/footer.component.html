@@ -1,0 +1,23 @@
+<footer class="bg-dark text-light w-100 fixed-bottom">
+    <div class="container pt-2">
+        <div class="row">
+            <div class="col text-center">
+                <h5>{{"footer_H5" | translate}}</h5>
+                <mat-radio-group [(ngModel)]="selectedValue">
+                    <label>
+                        <mat-radio-button value="fr" (click)="changeLanguage('fr')"></mat-radio-button>
+                        {{"footer_Button1" | translate}}
+                    </label>
+                    <label>
+                        <mat-radio-button value="en" (click)="changeLanguage('en')"></mat-radio-button>
+                        {{"footer_Button2" | translate}}
+                    </label>
+                    <label>
+                        <mat-radio-button value="ru" (click)="changeLanguage('ru')"></mat-radio-button>
+                        {{"footer_Button3" | translate}}
+                    </label>
+                </mat-radio-group>
+            </div>
+        </div>
+    </div>
+</footer>

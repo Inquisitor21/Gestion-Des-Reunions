@@ -1,0 +1,87 @@
+swagger: "2.0"
+info:
+  title: API de réunion
+  description: API pour la gestion des réunions
+  version: 1.0.0
+host: us-central1-cegep-al.cloudfunctions.net
+schemes:
+  - https
+paths:
+  /reunion:
+    get:
+      summary: Récupère toutes les réunions
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Reunion'
+    post:
+      summary: Crée une nouvelle réunion
+      parameters:
+        - in: body
+          name: body
+          description: Les détails de la réunion à créer
+          schema:
+            $ref: '#/definitions/Reunion'
+      responses:
+        200:
+          description: La réunion a été créée avec succès
+          schema:
+            $ref: '#/definitions/Reunion'
+    put:
+      summary: Met à jour une réunion existante
+      parameters:
+        - in: body
+          name: body
+          description: Les nouveaux détails de la réunion
+          schema:
+            $ref: '#/definitions/Reunion'
+      responses:
+        200:
+          description: La réunion a été mise à jour avec succès
+          schema:
+            $ref: '#/definitions/Reunion'
+    delete:
+      summary: Supprime une réunion
+      parameters:
+        - in: path
+          name: id
+          description: L'ID de la réunion à supprimer
+          required: true
+          type: string
+      responses:
+        200:
+          description: La réunion a été supprimée avec succès
+definitions:
+  Reunion:
+    type: object
+    properties:
+      createur_nom:
+        type: string
+      createur_prenom:
+        type: string
+      createur_email:
+        type: string
+      reunion_id:
+        type: string
+      participants:
+        type: array
+        items:
+          type: object
+          properties:
+            nom:
+              type: string
+            prenom:
+              type: string
+            disponnible:
+              type: string
+      date_debut:
+        type: string
+      date_fin:
+        type: string
+      description:
+        type: string

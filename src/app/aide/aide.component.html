@@ -1,0 +1,10 @@
+<!-- Menu d'aide -->
+<div class="offcanvas offcanvas-end custom-offcanvas" id="monOffcanvas">
+    <div class="offcanvas-header custom-aide-header">
+        <h4 class="offcanvas-title">{{ aideTitre | translate }}</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p *ngFor="let key of aideContentKeys">{{ key | translate }}</p>
+    </div>
+</div>

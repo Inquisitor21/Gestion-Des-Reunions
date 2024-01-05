@@ -1,0 +1,179 @@
+swagger: "2.0"
+# Possibilité pour générateur
+# npm install -g redoc-cli
+# Generateur redoc-cli bundle -o index.html swagger.json
+# npm install -g bootprint
+# npm install -g bootprint-base
+# npm install -g bootprint-swagger
+# npm install -g bootprint-openapi
+## Autre test
+# npm install -g @apidevtools/swagger-cli
+### Autre test
+# npm install -g swagger-tools
+
+info:
+  title: Base API
+  description: API de démarrage pour le cours 345 et 456
+  version: 1.0.1
+##host: cegep.fdtt.space
+##host: localhost:8080
+host: us-central1-cegep-al.cloudfunctions.net
+## basePath: /v1
+securityDefinitions:
+   # Authorization: abcdef12345
+   APIKeyHeader:
+     type: apiKey
+     in: header
+     name: Authorization
+schemes:
+  - https
+  #- http
+paths:
+  /session:
+    post:
+      summary: Recupere un token du serveur valide pour 1 heures
+      parameters:
+        - in: body
+          name: parameters
+          description: Votre username et password
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Token valide pour 4 heures
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                description: Token
+              error:
+                type: string
+                description: Message d'erreur si il y a lieu
+    delete:
+      summary: Detruit le token du serveur
+      security:
+        - APIKeyHeader: []
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Token fut detruit
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                description: Token
+              error:
+                type: string
+                description: Message d'erreur si il y a lieu
+  /secret:
+    get:
+      summary: Fourni une chaine si le token authenticite est valide.
+      description: Dans un Json.
+      security:
+        - APIKeyHeader: []
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                    description: Vrai si authenticite est valide
+                  owner:
+                    type: string
+                    description: Username of the owner 
+                  message:
+                    type: string
+                    description: 42 est la reponse a tout!
+  /create-user:
+    post:
+      summary: Crée un utilisateur 
+      parameters:
+        - in: body
+          name: parameters
+          description: Votre username et password
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+              email:
+                type: string
+              key:
+                type: string
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Réponse de confirmation
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                description: Token
+              error:
+                type: string
+                description: Message d'erreur si il y a lieu
+  /test:
+    post:
+      summary: Fait un test
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Réponse de confirmation
+          schema:
+            type: object
+            properties:
+              reponse:
+                type: string
+                description: 42 est la reponse a tout!
+    get:
+      summary: Fait un test
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Réponse de confirmation
+          schema:
+            type: object
+            properties:
+              reponse:
+                type: string
+                description: 42 est la reponse a tout!
+  /error:
+    get:
+      summary: Retourne une erreur
+      produces:
+        - application/json
+      responses:
+        418:
+          description: Réponse de confirmation
+          schema:
+            type: object
+            properties:
+              error:
+                type: integer
+                description: Code d'erreur
+              message:
+                type: string
+                description: Message d'erreur

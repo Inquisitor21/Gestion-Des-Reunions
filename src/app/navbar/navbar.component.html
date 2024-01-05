@@ -1,0 +1,25 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand noPointer"><img src="../../assets/images/Logo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill" width="40px"></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{"navbar_Accueil" | translate}}</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="'/documentation'" routerLinkActive="active">{{"navbar_Documentation" | translate}}</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="'/contactez-nous'" routerLinkActive="active">{{"navbar_Contacter" | translate}}</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="'/creer-reunion'" routerLinkActive="active">{{"navbar_Creer_Reunion" | translate}}</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="'/consulter-reunion'" routerLinkActive="active">{{"navbar_Consulter_Reunion" | translate}}</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="'/reunions'" routerLinkActive="active">{{"navbar_Reunions" | translate}}</a>
+            </ul>
+        </div>
+        <div class="ms-auto">
+            <button type="button" class="btn btn-primary d-none" id="usernameButton"></button>
+            <button type="button" class="btn btn-danger d-none m-1" id="deconnexionButton"> {{ "deconnexion" | translate}}</button>
+            <button type="button" class="btn btn-danger m-1" id="connexionButton" data-bs-toggle="modal" data-bs-target="#myModal">{{ "navbar_Connexion" | translate }}</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#monOffcanvas">{{"navbar_Aide" | translate}}</button>
+        </div>
+    </div>
+</nav>

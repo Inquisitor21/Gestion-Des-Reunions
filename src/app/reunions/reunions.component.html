@@ -1,0 +1,47 @@
+<app-aide
+    [selectedLanguage]="selectedLanguage"
+    [aideTitre]="'reunions_Aide_Titre'"
+    [aideContentKeys]="[
+            'reunions_Aide_P1',
+            'reunions_Aide_P2',
+            'reunions_Aide_P3',
+            'reunions_Aide_P4',
+            ]">
+</app-aide>
+
+<div class="m-3 mat-elevation-z8 table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>{{ 'tableau_position' | translate }}</th>
+            <th>{{ 'tableau_nom' | translate }}</th>
+            <th>{{ 'tableau_prenom' | translate }}</th>
+            <th>{{ 'tableau_courriel' | translate }}</th>
+            <th>{{ 'tableau_identificateur' | translate }}</th>
+            <th>{{ 'tableau_participants' | translate }}</th>
+            <th>{{ 'tableau_date1' | translate }}</th>
+            <th>{{ 'tableau_date2' | translate }}</th>
+            <th>{{ 'tableau_description' | translate }}</th>
+            <th>{{ 'tableau_action' | translate }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of dataSource">
+            <td>{{ row.id }}</td>
+            <td>{{ row.createur_nom }}</td>
+            <td>{{ row.createur_prenom }}</td>
+            <td>{{ row.createur_email }}</td>
+            <td>{{ row.reunion_id }}</td>
+            <td><span [innerHTML]="row.participants"></span></td>
+            <td>{{ row.date_debut }}</td>
+            <td>{{ row.date_fin }}</td>
+            <td>{{ row.description }}</td>
+            <td>
+                <button mat-icon-button class="delete-icon" (click)="deleteReunion(row.reunion_id)" *ngIf="isUserConnected(row)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

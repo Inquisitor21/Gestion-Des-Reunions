@@ -1,0 +1,95 @@
+<!-- Menu de Connexion -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body box">
+
+                <!-- Box d'identification -->
+                <form autocomplete="off" *ngIf="connexion_Active" (ngSubmit)="verifierConnexion()">
+                    <h2>{{"connexion_H2" | translate}}</h2>
+                    <div class="inputBox">
+                        <input type="text" class="text-white" required [(ngModel)]="connexion_Valeur_Pseudonime"
+                               name="Pseudonime" (input)="verifier_Saisie_Pseudonime()">
+                        <span>{{"connexion_Pseudonime" | translate}}</span>
+                        <i></i>
+                    </div>
+                    <div class="error text-white" *ngIf="!connexion_Pseudonime_Valide">{{connexion_Pseudonime_Error_Message}}</div>
+                    <div class="inputBox">
+                        <input type="password" required [(ngModel)]="connexion_Valeur_Password" name="Password"
+                               (input)="verifier_Saisie_Password()">
+                        <span>{{"connexion_MDP" | translate}}</span>
+                        <i></i>
+                    </div>
+                    <div class="error text-white" *ngIf="!connexion_Password_Valide">{{connexion_Password_Error_Message}}</div>
+                    <div class="links">
+                        <a (click)="activer_MDP_Oublie()">{{"connexion_MDP_Oublie" | translate}}</a>
+                        <a (click)="activer_Inscription()">{{"connexion_Inscrivez_Vous" | translate}}</a>
+                    </div>
+                    <button type="submit" [disabled]="!connexion_Is_Form_Valid" data-bs-dismiss="modal">{{"connexion_Se_Connecter" | translate}}</button>
+                </form>
+
+                <!-- Box d'inscription -->
+                <form autocomplete="off" *ngIf="inscription_Inscription_Active" (ngSubmit)="capturer_Inputs_Inscription()">
+                    <h2>{{"inscription_H2" | translate}}</h2>
+                    <div class="inputBox">
+                        <input type="text" class="text-white" required [(ngModel)]="inscription_Valeur_Pseudonime"
+                               name="Pseudonime" (input)="verifier_Saisie_Pseudonime_Inscription()">
+                        <span>{{"inscription_Pseudonime" | translate}}</span>
+                        <i></i>
+                    </div>
+                    <div class="error text-white"
+                         *ngIf="!inscription_Pseudonime_Valide">{{inscription_Pseudonime_Error_Message}}</div>
+                    <div class="inputBox">
+                        <input type="password" required [(ngModel)]="inscription_Valeur_Password" name="Password"
+                               (input)="verifier_Saisie_Password_Inscription()">
+                        <span>{{"inscription_MDP" | translate}}</span>
+                        <i></i>
+                    </div>
+                    <div class="error text-white"
+                         *ngIf="!inscription_Password_Valide">{{inscription_Password_Error_Message}}</div>
+                    <div class="inputBox">
+                        <input type="password" required [(ngModel)]="inscription_Valeur_Confirmation" name="Confirmation"
+                               (input)="verifier_Saisie_Confirmation()">
+                        <span>{{"inscription_MDP_Confirmation" | translate}}</span>
+                        <i></i>
+                    </div>
+                    <div class="error text-white" *ngIf="!inscription_Confirmation_Valide">{{inscription_Confirmation_Error_Message}}</div>
+                    <div class="links">
+                        <a (click)="activer_Connexion()">{{"inscription_Deja_Inscrit" | translate}}</a>
+                    </div>
+                    <button type="submit" [disabled]="!inscription_Is_Form_Valid" data-bs-dismiss="modal">{{"inscription_Inscrire" | translate}}</button>
+                </form>
+
+                <!-- Formulaire Mot de passe oublié -->
+                <form autocomplete="off" *ngIf="MDP_Oublie_MDP_Oublie_Active"
+                      (ngSubmit)="envoyer_Demande_Reinitialisation(); capturer_Inputs_MDP_Oublie()">
+                    <h2>{{"MDP_Oublie_H2" | translate}}</h2>
+                    <!--Dans le futur ajouter la vérification d'existence de Pseudonime dans la BD/LocalStorage-->
+                    <div class="inputBox">
+                        <input type="text" class="text-white" required [(ngModel)]="MDP_Oublie_Valeur_Pseudonime"
+                               name="Pseudonime" (input)="verifier_Saisie_Pseudonime_MDP_Oublie()">
+                        <span>{{"MDP_Oublie_Pseudonime" | translate}}</span>
+                        <i></i>
+                    </div>
+                    <div class="error text-white"
+                         *ngIf="MDP_Oublie_Pseudonime_Invalide">{{MDP_Oublie_Pseudonime_Error_Message}}</div>
+                    <div class="inputBox">
+                        <input type="email" class="text-white" required [(ngModel)]="MDP_Oublie_Valeur_Courriel" name="Courriel"
+                               (input)="verifier_Saisie_Courriel_MDP_Oublie()">
+                        <span>{{"MDP_Oublie_Courriel" | translate}}</span>
+                        <i></i>
+                    </div>
+                    <div class="error text-white"
+                         *ngIf="MDP_Oublie_Courriel_Invalide">{{MDP_Oublie_Courriel_Error_Message}}</div>
+                    <div class="links">
+                        <a (click)="activer_Connexion()">{{"MDP_Oublie_Retour_Connexion" | translate}}</a>
+                    </div>
+                    <button type="submit"
+                            [disabled]="!MDP_Oublie_Is_Form_Valid">{{"MDP_Oublie_Envoyer_Demande-Reinitialisation" | translate}}</button>
+                    <br>
+                    <div class="result-message text-white" *ngIf="MDP_Oublie_Requete_Envoyee">{{"MDP_Oublie_Logique" | translate}}</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

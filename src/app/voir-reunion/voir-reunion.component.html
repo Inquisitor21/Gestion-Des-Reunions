@@ -1,0 +1,119 @@
+<app-aide
+    [selectedLanguage]="selectedLanguage"
+    [aideTitre]="'voir_reunion_Aide_Titre'"
+    [aideContentKeys]="[
+            'voir_reunion_Aide_P1',
+            'voir_reunion_Aide_P2',
+            'voir_reunion_Aide_P3',
+            'voir_reunion_Aide_P4',
+            'voir_reunion_Aide_P5',
+            'voir_reunion_Aide_P6',
+            'voir_reunion_Aide_P7'
+            ]">
+</app-aide>
+<section>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="contactForm w-50">
+            <h2>{{ "voir_reunion_H2" | translate }}</h2>
+            <div *ngIf="!showModal">
+                <form class="formBox" autocomplete="off">
+                    <div class="inputBox width100">
+                        <input type="text" required [(ngModel)]="reunion_Valeur_Nom"
+                               name="Nom" (input)="verifier_Saisie_Nom()">
+                        <span>{{ "voir_reunion_Nom" | translate }}</span>
+                        <em *ngIf="!reunion_Nom_Valide && nom_load">{{ "voir_reunion_Nom_Error_Message" | translate }}</em>
+                    </div>
+                    <div class="inputBox width100">
+                        <input type="text" required [(ngModel)]="reunion_Valeur_Prenom"
+                               name="Prenom" (input)="verifier_Saisie_Prenom()">
+                        <span>{{ "voir_reunion_Prenom" | translate }}</span>
+                        <em *ngIf="!reunion_Prenom_Valide && prenom_load">{{ "voir_reunion_Prenom_Error_Message" | translate }}</em>
+                    </div>
+                    <div class="inputBox width100">
+                        <input type="text" required [(ngModel)]="reunion_Valeur_ID_Reunion"
+                               name="ID_reunion" maxlength="8" (input)="reunion_verifier_Saisie_ID_Reunion()">
+                        <span>{{ "voir_reunion_ID_Reunion" | translate }}</span>
+                        <em *ngIf="!reunion_ID_Reunion_Valide && id_load">{{ "voir_reunion_ID_Error_Message" | translate }}</em>
+                    </div>
+                    <div class="inputBox width100">
+                        <button type="submit" class="btn btn-danger me-3" [disabled]="!reunion_Is_Form_Valid"
+                                (click)="capturer_Inputs_Reunion_Voir()">
+                            {{ "voir_reunion_Consulter" | translate }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="showModal" class="form-container">
+                <div class="table-responsive">
+                    <table class="table table-striped table-responsive">
+                        <tbody>
+                        <tr>
+                            <th>{{ "voir_reunion_Nom" | translate }}</th>
+                            <td>{{ reunionDetails?.createur_nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "voir_reunion_Prenom" | translate }}</th>
+                            <td>{{ reunionDetails?.createur_prenom }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "voir_reunion_Courriel" | translate }}</th>
+                            <td>{{ reunionDetails?.createur_email }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "voir_reunion_ID_Reunion" | translate }}</th>
+                            <td>{{ reunionDetails?.reunion_id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "voir_reunion_Date_Debut" | translate }}</th>
+                            <td>{{ reunionDetails?.date_debut }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "voir_reunion_Date_Fin" | translate }}</th>
+                            <td>{{ reunionDetails?.date_fin }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "voir_reunion_Description" | translate }}</th>
+                            <td>{{ reunionDetails?.description }}</td>
+                        </tr>
+                        <tr *ngFor="let participant of reunionDetails?.participants; let i = index">
+                            <th>{{ "voir_reunion_Participant" | translate }} {{ i + 1 }}</th>
+                            <td>
+                                <p>{{ "voir_reunion_Nom" | translate }}: {{ participant.nom }}</p>
+                                <p>{{ "voir_reunion_Prenom" | translate }}: {{ participant.prenom }}</p>
+                                <p>{{ "voir_reunion_Disponnible" | translate }}: {{ participant.disponnible }}</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn btn-secondary mb-3 me-3"
+                        (click)="showModal = false; showParticipantForm = false; viderSessionStorage()"
+                >
+                    {{ "voir_reunion_Back" | translate }}
+                </button>
+
+                <button class="btn mb-3 me-3" id="rejoindre"
+                        [class.btn-primary]="!isParticipant(reunion_Valeur_ID_Reunion)"
+                        [class.btn-success]="isParticipant(reunion_Valeur_ID_Reunion)"
+                        (click)="showParticipantForm = !showParticipantForm"
+                        [disabled]="isParticipant(reunion_Valeur_ID_Reunion)"
+                >
+                    {{ isParticipant(reunion_Valeur_ID_Reunion) ? ('voir_reunion_Deja_Participant' | translate) : ('voir_reunion_Rejoindre' | translate) }}
+                </button>
+
+                <form [formGroup]="participantForm" class="formBox" *ngIf="showParticipantForm" autocomplete="off"
+                      (submit)="ajouterParticipant()">
+                    <div class="inputBox w-75">
+                        <input type="text" formControlName="disponnible" maxlength="21" required name="Disponnible"
+                               placeholder="{{'voir_reunion_Disponnible_placeholder' | translate}}">
+                    </div>
+                    <div class="inputBox w-75">
+                        <button type="submit" class="btn btn-success me-3" [disabled]="!participantForm.valid">
+                            {{ "voir_reunion_Ajouter" | translate }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

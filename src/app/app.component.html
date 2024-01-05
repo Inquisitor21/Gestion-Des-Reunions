@@ -1,0 +1,4 @@
+<app-navbar></app-navbar>
+<app-connexion [selectedLanguage]="selectedLanguage"></app-connexion>
+<router-outlet></router-outlet>
+<app-footer (languageChange)="onLanguageChange($event)"></app-footer>

@@ -1,0 +1,33 @@
+<app-aide
+    [selectedLanguage]="selectedLanguage"
+    [aideTitre]="'nonTrouve_Titre'"
+    [aideContentKeys]="[
+            'nonTrouve_Aide_P1'
+            ]">
+</app-aide>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col text text-center">
+                <img class="image mt-5" src="https://omjsblog.files.wordpress.com/2023/07/errorimg.png" alt="404">
+                <h1>{{"nonTrouve_H1" | translate}}</h1>
+                <p>{{"nonTrouve_P1" | translate}}</p>
+                <p>{{"nonTrouve_P2" | translate}}</p>
+                <p>{{ devinetteEnCours.question | translate }}</p>
+                <form (ngSubmit)="verifierReponse()">
+                    <input type="text" class="custom-input" autocomplete="off" [(ngModel)]="userReponse"
+                           name="userAnswer" [placeholder]="'nonTrouve_Input' | translate">
+                    <br><br>
+                    <button type="submit" class="btn btn-danger mb-2">{{"nonTrouve_Bouton" | translate}}</button>
+                </form>
+                <p *ngIf="montrerErreurMessage" class="marginBottom">{{"nonTrouve_Mauvaise_Reponse" | translate}}</p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,55 @@
+<app-aide
+    [selectedLanguage]="selectedLanguage"
+    [aideTitre]="'contacter_Aide_Titre'"
+    [aideContentKeys]="[
+            'contacter_Aide_P1',
+            'contacter_Aide_P2',
+            'contacter_Aide_P3',
+            'contacter_Aide_P4',
+            'contacter_Aide_P5',
+            'contacter_Aide_P6',
+            'contacter_Aide_P7',
+            ]">
+</app-aide>
+
+<section>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="contactForm">
+            <h2>{{"contacter_H2" | translate}}</h2>
+            <form class="formBox" autocomplete="off" (ngSubmit)="capturer_Inputs()">
+                <div class="inputBox width100">
+                    <input type="text" required [(ngModel)]="contacter_Valeur_Nom"
+                           name="Nom" (input)="verifier_Saisie_Nom()">
+                    <span>{{"contacter_Nom" | translate}}</span>
+                    <em *ngIf="!contacter_Nom_Valide && nom_load">{{"contacter_Nom_Error_Message" | translate}}</em>
+                </div>
+                <div class="inputBox width100">
+                    <input type="text" required [(ngModel)]="contacter_Valeur_Prenom"
+                           name="Prenom" (input)="verifier_Saisie_Prenom()">
+                    <span>{{"contacter_Prenom" | translate}}</span>
+                    <em *ngIf="!contacter_Prenom_Valide && prenom_load">{{"contacter_Prenom_Error_Message" | translate}}</em>
+                </div>
+                <div class="inputBox width100">
+                    <input type="email" required [(ngModel)]="contacter_Valeur_Courriel" placeholder=""
+                           name="Courriel" (input)="verifier_Saisie_Courriel()">
+                    <span>{{"contacter_Courriel" | translate}}</span>
+                    <em *ngIf="!contacter_Courriel_Valide && courriel_load ">{{"contacter_Courriel_Error_Message" | translate}}</em>
+                </div>
+                <div class="inputBox width100">
+                    <textarea required maxlength="250" [(ngModel)]="contacter_Valeur_Commentaire" name="Commentaire"
+                              (input)="verifier_Limite_Caracteres()"></textarea>
+                    <span>{{ "contacter_Message" | translate }}</span>
+                    <div class="counter">{{ nombreCaracteres }} / {{ limiteCaracteres }}</div>
+                    <em *ngIf="!contacter_Limite_Valide && commentaire_load">{{ contacter_Limite_Error_Message | translate }}</em>
+                </div>
+                <div class="inputBox width100">
+                    <button id="btn-envoyer" type="submit" class="btn btn-danger me-3"
+                            [disabled]="!contacter_Is_Form_Valid"
+                            (click)="resetFormulaireOnSubmit()">{{ contacter_Button_Envoyer | translate }}
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="afficherMessages()">{{"contacter_Messages_Envoyes" | translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

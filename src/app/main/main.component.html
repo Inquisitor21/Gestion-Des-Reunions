@@ -1,0 +1,67 @@
+<app-aide
+    [selectedLanguage]="selectedLanguage"
+    [aideTitre]="'main_Aide_Titre'"
+    [aideContentKeys]="[
+            'main_Aide_P1',
+            'main_Aide_P2',
+            'main_Aide_P3',
+            'main_Aide_P4',
+            'main_Aide_P5',
+            'main_Aide_P6',
+            'main_Aide_P7',
+            'main_Aide_P8',
+            'main_Aide_P9',
+            'main_Aide_P10',
+            'main_Aide_P11',
+            'main_Aide_P12'
+            ]">
+</app-aide>
+
+<header class="container">
+    <div class="content">
+        <h4>{{"main_H4" | translate}}</h4>
+        <h1>
+            {{"main_H1_part1" | translate}}
+            <span>{{"main_Span" | translate}}</span>
+            {{"main_H1_part2" | translate}}
+        </h1>
+        <p>{{"main_P1" | translate}}</p>
+        <p>{{"main_P2" | translate}}</p>
+        <p>{{"main_P3" | translate}}</p>
+        <p>{{"main_P4" | translate}}</p>
+    </div>
+    <div class="image">
+        <img src="../../assets/images/header.png" alt="header">
+    </div>
+</header>
+
+<div class="container">
+    <h2 class="header">{{"main_H2" | translate}}</h2>
+    <div class="features">
+        <div class="card">
+            <h4>{{"main_H4_part1" | translate}}</h4>
+            <p>{{"main_P_part1" | translate}}</p>
+        </div>
+        <div class="card">
+            <h4>{{"main_H4_part2" | translate}}</h4>
+            <p>{{"main_P_part2" | translate}}</p>
+        </div>
+        <div class="card">
+            <h4>{{"main_H4_part3" | translate}}</h4>
+            <p>{{"main_P_part3" | translate}}</p>
+        </div>
+        <div class="card">
+            <h4>{{"main_H4_part4" | translate}}</h4>
+            <p>{{"main_P_part4" | translate}}</p>
+        </div>
+        <div class="card">
+            <h4>{{"main_H4_part5" | translate}}</h4>
+            <p>{{"main_P_part5" | translate}}</p>
+        </div>
+        <div class="card">
+            <h4>{{"main_H4_part6" | translate}}</h4>
+            <p>{{"main_P_part6" | translate}}</p>
+        </div>
+    </div>
+    <br>
+</div>

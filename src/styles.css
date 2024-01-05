@@ -1,0 +1,207 @@
+/*Changement forcé des Styles du Bootstrap par defaut*/
+.offcanvas {
+    /*Reduction de la largeur du menu d'aide*/
+    --bs-offcanvas-width: 300px;
+}
+
+.nav-link, .nav-item {
+    color: #007BFF;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: red;
+}
+
+.modal-dialog {
+    /*Reduction de la largeur du modal*/
+    max-width: 400px;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* Styles personnalisés pour le menu d'aide */
+.custom-aide-header {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px;
+}
+
+.offcanvas-body {
+    background: #28292d;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #c20000;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*Autres styles personnalisés*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Calibri, sans-serif;
+}
+
+body {
+    background-color: #18181B;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+nav,
+footer {
+    background: #28292d;
+    font-size: 1.2rem;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Calibri, sans-serif;
+}
+
+footer.mat-radio-label label {
+    color: white;
+}
+
+.active {
+    font-weight: bold;
+    color: white;
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*Styles des formulaires Message/Créer Réunion/Voir Réunion*/
+
+section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    background: #112d42;
+}
+
+section .container {
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    display: flex;
+    z-index: 1000;
+}
+
+section .container .contactForm {
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+section .container .contactForm h2 {
+    display: flex;
+    color: red;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+section .container .contactForm .formBox {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+section .container .contactForm .formBox .inputBox {
+    position: relative;
+    margin: 0 0 35px 0;
+}
+
+.width45 {
+    width: 45%;
+}
+
+.width100 {
+    width: 100%;
+}
+
+section .container .contactForm .formBox .inputBox input,
+section .container .contactForm .formBox .inputBox textarea {
+    width: 100% !important;
+    padding: 5px 0;
+    resize: none;
+    font-size: 18px;
+    font-weight: 300;
+    color: #333;
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+}
+
+section .container .contactForm .formBox .inputBox textarea {
+    height: 120px;
+}
+
+section .container .contactForm .formBox .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 18px;
+    font-weight: 300;
+    color: #333;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+section .container .contactForm .formBox .inputBox input:focus ~ span,
+section .container .contactForm .formBox .inputBox input:valid ~ span,
+section .container .contactForm .formBox .inputBox textarea:focus ~ span,
+section .container .contactForm .formBox .inputBox textarea:valid ~ span,
+section .container .contactForm .formBox .inputBox input[type="email"]:not(:placeholder-shown) ~ span {
+    transform: translateY(-20px);
+    font-size: 14px;
+    font-weight: 400;
+    color: red;
+}
+
+.counter {
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.btn_personnel {
+    pointer-events: none;
+    cursor: initial;
+}
+
+.mat-elevation-z8 {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+@media (max-width: 500px) {
+    section .container .contactForm .formBox .inputBox span {
+        font-size: 14px;
+    }
+    section {
+        min-height: 100vh;
+    }
+}
